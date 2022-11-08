@@ -1,0 +1,6 @@
+*.pyc
+.flaskenv
+packages_used
+ideas_issues
+/app/site.db
+/venv

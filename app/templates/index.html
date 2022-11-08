@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block app_content %}
+
+        <div class="container" style="width: 80%;">
+
+        
+        {% if error %}
+        <p><strong> Error: </strong></p> {{error}}
+        {% endif %}
+        
+
+        <div class="row">
+                <form action="" method="post" novalidate>
+                    <label class="control-label"><h4>Define household members and simulation period:</h4></label>
+                    <dl>
+                        {{ form.hidden_tag() }}
+                        {{ form.csrf_token }}
+                        {{ wtf.form_field(form.number_adults_field) }}
+                        {{ wtf.form_field(form.number_children_field) }}
+                        {{ wtf.form_field(form.number_bedrooms_field) }}
+                        {{ wtf.form_field(form.startdate_field) }}
+                        {{ wtf.form_field(form.enddate_field) }}
+                        <input class="btn btn-primary" type="submit" value="Next">
+                    </dl>
+                </form>
+        </div>
+
+        <div class="row">
+                <div class="well">
+                    
+                    <h4>ProccS:</h4>    
+                    ProccS is a tool for simulating occupancy profiles for private households. 
+                    The tool is based on the article: 
+
+                    <ul>
+                      <li><cite>Wolf, S. Calì, Madsen, H. et al. (2019) Domestic Occupancy Simulation on Room-level (under review)</cite></li>
+                    </ul>
+
+                    The application creates occupancy profiles for bathroom, kitchen, living room and bedrooms. The profiles can be downloaded in csv-format. 
+
+                    The underlying model is based on a inhomogeneous Markov chain.
+                    It was trained on time-use data of Danish households from 2008/2009.
+
+                    The tool was developed at the Techincal University of Denmark in the Dynamical Systems group (<a href="https://www.compute.dtu.dk/english/research/research-sections/dynsys" class="card-link">DTU DynSys</a>).
+                    Maintainer: Sebastian Wolf (<a href="https://www.linkedin.com/in/sebastian-wolf-9a8bb3114/" class="card-link">LinkedIn</a>)
+
+                    <h4>Example:</h4>
+                    
+                    <div class="row top-buffer",  style="margin-left:30px;margin-bottom:30px;">        
+                        <img class="img-responsive" src="static/figures/profile_example.png" alt="Example profile" width="460" height="345"> 
+                    </div>
+
+                    <h4>Assumptions and limitations:</h4>
+
+                    <ul>
+                                                    
+
+                        <li>At every time point, each occupant is in either of the following states: (1) bedroom, (2) kitchen, (3) bathroom, (4) living room, (5) not present.</li>
+
+                        <li>Occupants access only their own bedroom.</li>
+
+                        <li>Each occupant moves independently.</li>
+                        
+                        <li>Differences of occupancy for different days of the week are taken into account.</li>
+                        <li>No holidays are considered.</li>
+
+                        <li>The rooms are accessed by the household members only. No visitors are considered.</li>
+
+                        <li>Currently, each household has exactly one bathroom.</li>
+
+                        <li>ProccS is meant for simulating private households only. For office environments, refer to
+                        <a href="http://occupancysimulator.lbl.gov/" class="card-link">occupancy simulator</a> developed by Lawrence Berkeley National Laboratory.</li>
+
+                    </ul>
+
+                </div>
+        </div>    
+
+        </div>
+
+{% endblock %}

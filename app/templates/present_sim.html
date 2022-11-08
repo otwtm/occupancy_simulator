@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block app_content %}
+ 
+<div class="container">
+     <div class="row">
+        <ul class="pager">
+          <li class="previous">
+            <a href="/allocate_bedrooms" target="_self">&larr; Back</a>
+          </li>
+        </ul>
+            <a href="/return_csv" target="_self"><button class="btn btn-primary">Download </button></a>
+    </div> 
+
+
+          {% for div, script in plot_elements %}
+    <div class="row top-buffer">
+        <div class="col-sm-12">
+              {{ div | safe}}
+              {{ script |safe }}
+        </div>
+    </div>
+          {% endfor %}
+
+     <div class="row">
+        <ul class="pager">
+          <li class="previous">
+            <a href="/allocate_bedrooms" target="_self">&larr; Back</a>
+          </li>
+        </ul>
+            <a href="/return_csv" target="_self"><button class="btn btn-primary">Download </button></a>
+    </div> 
+</div>
+
+{% endblock %}
+
+
+
+
+
